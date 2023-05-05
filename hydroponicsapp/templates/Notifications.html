@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <!--Icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp"
+    rel="stylesheet">
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="{% static 'NotificationStyles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <!-- <img src="./images/logo.png" alt="Hydroponics"> -->
+                    <h2>Hydroponics</h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <li><a href="ControlPanel" >
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Dashboard</h3>
+                </a></li>
+                <li><a href="#notifications" class="active">
+                    <span class="material-icons-sharp">notifications</span>
+                    <h3>Notifications</h3>
+                    <span class="message-count">{{ pending.count }}</span>
+                </a></li>
+                <li><a href="History">
+                    <span class="material-icons-sharp">history</span>
+                    <h3>History</h3>
+                </a></li>
+                <li><a href="Logout">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a></li>
+            </div>
+        </aside>
+        <!-- End of Sidebar -->
+        <main>
+            <div class="history" id="history">
+                <h2>Notifications</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Sensor</th>
+                            <th>Value</th>
+                            <th>Alert</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                {% for hydroponicsapp in notif %}
+                        <tr>
+                            <td>{{hydroponicsapp.date_time}}</td>
+                            <td>{{hydroponicsapp.sensor}}</td>
+                            <td>{{hydroponicsapp.measurement}}</td>
+                            
+                            {% if hydroponicsapp.alert == 'High'%}
+                            <td class="danger">{{hydroponicsapp.alert}}</td>
+                            {% else %}
+                            <td class="warning">{{hydroponicsapp.alert}}</td>
+                            {% endif %}
+                            
+                            {% if hydroponicsapp.status == 'Pending'%}
+                            <td class="danger">{{hydroponicsapp.status}}</td>
+                            {% else %}
+                            <td>{{hydroponicsapp.status}}</td>
+                            {% endif %}
+                            <td>
+                                <span class="material-symbols-sharp" id="mark">
+                                    visibility
+                                </span>
+                            </td>
+
+                            {% block hidden %}
+                                {% if hydroponicsapp.status == 'Pending' %}
+                                <input type="hidden" value="Read" name="status">
+                                <script>
+                                    window.onclick = function () {
+                                        document.getElementById('mark').click();
+                                    }
+                                </script>
+                                {% endif %}
+                            {% endblock hidden %} 
+                        </tr>
+                {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+        <!---------------- END OF MAIN ---------------->
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'ControlPanel.js' %}"></script>
+</body>
+</html>

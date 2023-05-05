@@ -1,0 +1,141 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Panel</title>
+    <!--Icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp"
+    rel="stylesheet">
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="{% static 'ControlPanelStyles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <!-- <img src="./images/logo.png" alt="Hydroponics"> -->
+                    <h2>Hydroponics</h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <li><a href="#" class="active">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Dashboard</h3>
+                </a></li>
+                <li><a href="Notifications">
+                    <span class="material-icons-sharp">notifications</span>
+                    <h3>Notifications</h3>
+                    <span class="message-count">{{ pending.count }}</span>
+                </a></li>
+                <li><a href="History">
+                    <span class="material-icons-sharp">history</span>
+                    <h3>History</h3>
+                </a></li>
+                <li><a href="Logout">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a></li>
+            </div>
+        </aside>
+        <!-- End of Sidebar -->
+        <main>
+            <h1>Sensors</h1>
+            <div class="sensors" id="dashboard">
+                <div class="ph">
+                    <span class="material-symbols-sharp">water_ph</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h1>pH Level</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>3.5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---------------- End of pH Level ---------------->
+                <div class="ec">
+                    <span class="material-symbols-sharp">water_ec</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h1>EC Level</h1>
+                            <h3>in ppm</h3>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>600</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---------------- End of EC Level ---------------->
+                <div class="temperature">
+                    <span class="material-symbols-sharp">dew_point</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h1>Temperature</h1>
+                            <h3>in °C</h3>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>22</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---------------- End of Temperature ---------------->
+                <div class="waterflow">
+                    <span class="material-symbols-sharp">waves</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h1>Water Flow</h1>
+                            <h3>in mL/h</h3>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>120</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---------------- End of Waterflow ---------------->
+            </div>
+            <!---------------- End of Sensors ---------------->
+
+        </main>
+        <!---------------- END OF MAIN ---------------->
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'ControlPanel.js' %}"></script>
+</body>
+</html>
