@@ -14,6 +14,7 @@ def home(request):
     return render(request,"Login.html")
 
 def control_panel(request):
+    
     pending = Notifications.objects.all()
     return render(request, "Control Panel.html", {'pending':pending})
 

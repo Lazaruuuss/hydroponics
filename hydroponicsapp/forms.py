@@ -1,6 +1,6 @@
 from dataclasses import fields
 from logging.config import valid_ident
-from socket import fromshare
+#from socket import fromshare
 from tkinter.tix import Form
 from django import forms
 from django.forms import ModelForm
